@@ -6,6 +6,13 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 public class TextureRender implements GLSurfaceView.Renderer {
+
+    static {
+        System.loadLibrary("texture-render");
+    }
+
+    
+
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
 

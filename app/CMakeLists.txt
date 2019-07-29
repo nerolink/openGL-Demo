@@ -39,6 +39,12 @@ add_library(
         src/main/cpp/shader/Shader.cpp
 )
 
+add_library(
+        texture-render
+        SHARED
+        src/main/cpp/texture/TextureRender.cpp
+)
+
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -79,5 +85,12 @@ target_link_libraries(
         shader-base
         android
         GLESv3
+        ${log-lib}
+)
+target_link_libraries(
+        texture-render
+        android
+        GLESv3
+        shader-base
         ${log-lib}
 )
