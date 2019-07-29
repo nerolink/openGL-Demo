@@ -11,22 +11,33 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 include_directories(${CMAKE_SOURCE_DIR} src/main/cpp)
 add_library( # Sets the name of the library.
-             gltest-lib
+        gltest-lib
 
-             # Sets the library as a shared library.
-             SHARED
+        # Sets the library as a shared library.
+        SHARED
 
-             # Provides a relative path to your source file(s).
-             src/main/cpp/RendererJNI.cpp )
+        # Provides a relative path to your source file(s).
+        src/main/cpp/RendererJNI.cpp)
 
 add_library( # Sets the name of the library.
-             native-lib
-             # Sets the library as a shared library.
-             SHARED
+        native-lib
+        # Sets the library as a shared library.
+        SHARED
 
-             # Provides a relative path to your source file(s).
-             src/main/cpp/native-lib.cpp )
+        # Provides a relative path to your source file(s).
+        src/main/cpp/native-lib.cpp)
 
+add_library(
+        shader-lib
+        SHARED
+        src/main/cpp/shader/ShaderRender.cpp
+)
+
+add_library(
+        shader-base
+        SHARED
+        src/main/cpp/shader/Shader.cpp
+)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -36,26 +47,37 @@ add_library( # Sets the name of the library.
 # completing its build.
 
 find_library( # Sets the name of the path variable.
-              log-lib
+        log-lib
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       gltest-lib
-                       android # 错误：Error: undefined reference to 'AAssetManager_fromJava'
-                       GLESv3  # 把opengl库文件添加进来
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+        gltest-lib
+        android # 错误：Error: undefined reference to 'AAssetManager_fromJava'
+        GLESv3  # 把opengl库文件添加进来
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})
 target_link_libraries( # Specifies the target library.
-                       native-lib
-
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+        native-lib
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})
+target_link_libraries(
+        shader-lib
+        android
+        GLESv3
+        ${log-lib}
+)
+target_link_libraries(
+        shader-base
+        android
+        GLESv3
+        ${log-lib}
+)

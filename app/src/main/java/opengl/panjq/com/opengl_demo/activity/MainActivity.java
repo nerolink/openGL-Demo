@@ -1,14 +1,15 @@
-package opengl.panjq.com.opengl_demo;
+package opengl.panjq.com.opengl_demo.activity;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import android.app.ActivityManager;
 import android.content.pm.ConfigurationInfo;
 import android.util.Log;
+
+import opengl.panjq.com.opengl_demo.Render.RendererJNI;
 
 import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
 
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
             Log.e("opengles30", "OpenGL ES 3.0 not supported on device.  Exiting...");
             finish();
         }
-
         setContentView(mGLSurfaceView);
     }
 

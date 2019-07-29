@@ -7,13 +7,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*
- * Class:     opengl_panjq_com_opengl_demo_RendererJNI
- * Method:    glesInit
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_opengl_panjq_com_opengl_1demo_RendererJNI_glesInit
-  (JNIEnv *, jobject);
 
 /*
  * Class:     opengl_panjq_com_opengl_demo_RendererJNI

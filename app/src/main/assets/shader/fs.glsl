@@ -1,7 +1,7 @@
 #version 300 es  
   
 precision mediump float;  
-out vec4 fragColor;  
+out vec4 fragColor;    //声明输出变量
   
 void main()  
 {  

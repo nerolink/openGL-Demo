@@ -1,4 +1,4 @@
-package opengl.panjq.com.opengl_demo;
+package opengl.panjq.com.opengl_demo.Render;
 
 import android.opengl.GLSurfaceView.Renderer;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -16,11 +16,13 @@ public class RendererJNI implements GLSurfaceView.Renderer {
     private AssetManager mAssetMgr = null;
     private final String mLogTag = "ndk-build";
 
-    public native void glesInit();
-    public native void glesRender();
+    public native void glesInitTwoColor();
+
+    public native void glesTwoColorTriangle();
+
     public native void glesResize(int width, int height);
 
-    public native void readShaderFile(AssetManager assetMgr);
+    public native void readShaderFileTwoColor(AssetManager assetManager);
 
     public RendererJNI(Context context) {
         mAssetMgr = context.getAssets();
@@ -37,8 +39,9 @@ public class RendererJNI implements GLSurfaceView.Renderer {
      */
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        readShaderFile(mAssetMgr);
-        glesInit();
+        readShaderFileTwoColor(mAssetMgr);
+        glesInitTwoColor();
+//        glesInit();
     }
 
     /**
@@ -59,6 +62,6 @@ public class RendererJNI implements GLSurfaceView.Renderer {
      */
     @Override
     public void onDrawFrame(GL10 gl) {
-        glesRender();
+        glesTwoColorTriangle();
     }
 }
